@@ -1,5 +1,56 @@
-1
-2
-Three
+Jenkins Installation & Configuration on AWS EC2 Linux instance
+#
+aws
+#
+awsec2
+#
+linux
+#
+jenkins
+Image description
 
-https://dev.to/aws-builders/jenkins-installation-configuration-on-aws-ec2-linux-instance-3npl
+Jenkins is a free and open-source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
+
+Step 1: Launching an Amazon Linux EC2 instance
+[Refer video “How to launch an Amazon Linux ec2 Instance”]
+
+Step 2: Installation of Jenkins on EC2 Instance
+i. Run the command to update all the packages.
+
+sudo yum update
+
+ii. Check if java is installed or not using the command
+
+java -version
+
+If java is not installed, install using the following command
+
+sudo yum install java-1.8.0-openjdk
+
+iii. Now, to download the latest Jenkins package
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+
+**iv. **To enable the installation of the package, import the key file from Jenkins-CI:
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+v. Install Jenkins on the EC2 instance
+
+sudo yum install jenkins
+
+vi. To start the Jenkins service
+
+sudo service jenkins start
+
+vii. Access the Jenkins server using the public DNS of the EC2 instance or public IP of the instance on port 8080.
+
+http://{ec2-public-dns}:8080 or http://3.89.79.74:8080/
+
+viii. Login using the username admin and to get the initial admin password execute the following command:
+sudo su -
+cd /var/lib/jenkins/secrets/ 
+cat initialAdminPassword
+ix. To stop Jenkins service
+
+sudo service jenkins stop
